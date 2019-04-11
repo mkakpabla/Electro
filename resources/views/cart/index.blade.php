@@ -68,7 +68,7 @@
                 <div class="alert alert-info">
                     Votre Panier est vide
                 </div>
-            <a href="{{ route('products.index') }}" class="btn btn-primary">Aller a la boutique</a>
+            <a href="{{ route('shop.index') }}" class="btn btn-primary">Aller a la boutique</a>
             @endif
         @if (Cart::instance('later')->count() > 0)
             <h2 class="mt-5">Enregistré pour plus tard ({{ Cart::instance('later')->count() }} article)</h2>

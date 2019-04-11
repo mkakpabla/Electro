@@ -25,23 +25,43 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('products.index') }}">Boutique</a>
+                    <a class="nav-link" href="{{ route('shop.index') }}">Boutique</a>
                 </li>
-
-
             </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a style="display: inline" class="nav-link" href="{{ route('cart.index') }}">Panier</a>
-                    @if (Cart::instance('default')->count() > 0)
-                        <span  class="badge badge-light">{{ Cart::instance('default')->count() }}</span>
-                    @else
-                        <span  class="badge badge-light">0</span>
-                    @endif
-                </li>
-
-
+            <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Authentication Links -->
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login.create') }}">Se connecter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register.create') }}">S'inscrire</a>
+                    </li>
+                @else
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ auth()->user()->name }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Mon compte</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('logout') }}">Se deconnecter</a>
+                        </div>
+                    </li>
+                @endguest
             </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a style="display: inline" class="nav-link" href="{{ route('cart.index') }}">Panier</a>
+                        @if (Cart::instance('default')->count() > 0)
+                            <span  class="badge badge-light">{{ Cart::instance('default')->count() }}</span>
+                        @else
+                            <span  class="badge badge-light">0</span>
+                        @endif
+                    </li>
+                </ul>
         </div>
     </div>
 </nav>

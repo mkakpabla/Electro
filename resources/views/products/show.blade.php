@@ -9,6 +9,7 @@
             <div class="col-sm-8">
                 <h1>{{ $product->name }}</h1>
                 <p>{{ $product->details }}</p>
+                <h2>EUR {{ $product->price }}</h2>
 
                 <form action="{{ route('cart.store') }}" method="POST">
                     @csrf

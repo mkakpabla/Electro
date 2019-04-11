@@ -71,11 +71,11 @@
                     @csrf
                     <div class="form-group">
                         <label for="name">Nom</label>
-                        <input id="name" name="name" type="text" class="form-control">
+                        <input id="name" name="name" type="text" class="form-control" value="{{ auth()->check() ? auth()->user()->name : old('name') }}" {!! auth()->check() ? 'readonly' : '' !!}>
                     </div>
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input id="email" name="email" type="text" class="form-control">
+                        <input id="email" name="email" type="text" class="form-control" value="{{ auth()->check() ? auth()->user()->email : old('email') }}" {!! auth()->check() ? 'readonly' : '' !!}>
                     </div>
                     <div class="form-group">
                         <label for="card-element">
