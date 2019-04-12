@@ -31,13 +31,18 @@ class LoginController extends Controller
 
     public function store(LoginRequest $request)
     {
-        auth()->attempt([
+        $auth = auth()->attempt([
             'email' => $request->email,
             'password' => $request->password
         ]);
-        $uri = str_replace(url('/'), '', session()->get('url', '/'));
-        return redirect($uri)
-            ->with('success', 'Vous etes connecter avec success');
+        if ($auth) {
+            $uri = str_replace(url('/'), '', session()->get('url', '/'));
+            return redirect($uri)
+                ->with('success', 'Vous etes connecter avec success');
+        }
+        return back()
+            ->with('error','Identifiant ou mot de passe incorrecte');
+        
     }
 
     public function logout()

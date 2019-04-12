@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-sm-4">
             <h2>Se connecter</h2>
+            @include('layouts.flash')
             <div class="card p-3">
                 <form method="POST" action="{{ route('login.store') }}">
                     @csrf

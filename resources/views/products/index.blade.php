@@ -3,8 +3,18 @@
 @section('content')
     <div class="jumbotron">
         <div class="container">
-            <h1>Vente des Articles</h1>
+            <h1>Boutique</h1>
             <P>Choisir un article ou plusieur pour effectuer des achats</P>
+            <form action="">
+                <div class="row mb-3">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Recherche...">
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary">Recherche</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <div class="container mt-3">
@@ -29,6 +39,7 @@
                 </div>-->
             </div>
             <div class="col-sm-9">
+
                 <div class="row">
                     @foreach($products as $product)
                         <div class="col-md-4">

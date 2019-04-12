@@ -7,6 +7,7 @@ use App\Mail\RegisterMail;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 
 
 class RegisterController extends Controller
@@ -20,8 +21,12 @@ class RegisterController extends Controller
 
     public function store(RegisterRequest $request)
     {
-        $request['token'] = str_random(60);
-        $user = User::create($request->all());
+        $user = User::create([
+           'name' => $request->name,
+           'email' => $request->email,
+           'token' => str_random(60),
+           'password' => Hash::make($request->password)
+        ]);
         Mail::to($user)->send(new RegisterMail($user));
         return redirect()
             ->route('login.create');
