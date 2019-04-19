@@ -178,6 +178,7 @@ return [
         Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
 
+
     ],
 
     /*

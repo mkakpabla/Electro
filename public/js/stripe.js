@@ -48,7 +48,8 @@ form.addEventListener('submit', function(event) {
     document.getElementById('payment-btn').disabled = true;
     var options = {
         name: document.getElementById('name').value,
-        email: document.getElementById('email').value
+        email: document.getElementById('email').value,
+        address_country: document.getElementById('address_country').value
     };
 
     stripe.createToken(card, options).then(function(result) {

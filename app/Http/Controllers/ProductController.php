@@ -29,4 +29,12 @@ class ProductController extends Controller
     {
         return view('products.show', compact('product'));
     }
+
+    public function search(Request $request)
+    {
+        $products = Product::where('name', 'like', '%'.$request->q. '%')
+            ->orWhere('slug', 'like', '%'.$request->q. '%')
+            ->paginate(5);
+        return view('search.index', compact('products'));
+    }
 }

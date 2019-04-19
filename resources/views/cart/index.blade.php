@@ -6,19 +6,19 @@
         @include('layouts.flash')
             @if (Cart::count() > 0)
             <h2>Votre Panier({{ Cart::count() }} article)</h2>
-            <table class="table">
+            <table class="table table-striped table-bordered">
                 <thead>
                 <tr>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Quantiter</th>
-                    <th scope="col">Prix</th>
-                    <th scope="col">Actions</th>
+                    <th>Nom</th>
+                    <th>Quantiter</th>
+                    <th>Prix</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($items as $item)
                     <tr>
-                        <th scope="row">{{ $item->name }}</th>
+                        <td>{{ $item->name }}</td>
                         <td>
                             <form action="{{ route('cart.update', $item->rowId) }}" method="POST">
                                 @csrf

@@ -17,6 +17,7 @@ Route::delete('/coupon', 'CouponsController@destroy')->name('coupon.destroy');
 Route::get('/', 'ProductController@index')->name('shop.index');
 Route::get('/boutique', 'ProductController@index')->name('shop.index');
 Route::get('/boutique/products/{product}', 'ProductController@show')->name('product.show');
+Route::get('/search', 'ProductController@search')->name('product.search');
 
 Route::get('checkout', 'CheckoutController@index')->name('checkout.index')->middleware('auth');
 Route::post('checkout', 'CheckoutController@store')->name('checkout.store');

@@ -78,6 +78,11 @@
                         <input id="email" name="email" type="text" class="form-control" value="{{ auth()->check() ? auth()->user()->email : old('email') }}" {!! auth()->check() ? 'readonly' : '' !!}>
                     </div>
                     <div class="form-group">
+                        <label for="address_country">Address</label>
+                        <input id="address_country" name="address_country" type="text" class="form-control{!! $errors->has('address_country') ? ' is-invalid' : '' !!}" value="">
+                        {!! $errors->first('address_country', "<p class='text-danger'>:message</p>") !!}
+                    </div>
+                    <div class="form-group">
                         <label for="card-element">
                             Carte de credit
                         </label>

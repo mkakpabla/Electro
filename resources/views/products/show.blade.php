@@ -5,6 +5,20 @@
         <div class="row">
             <div class="col-sm-4">
                 <img src="/images/pc.jpg" alt="" width="350">
+                <div class="img-group mt-1">
+                    <a class="img-item" href="">
+                        <img src="/images/pc.jpg" alt="" width="80">
+                    </a>
+                    <a class="img-item" href="">
+                        <img src="/images/casque.jpg" alt="" width="80">
+                    </a>
+                    <a class="img-item" href="">
+                        <img src="/images/pc.jpg" alt="" width="80">
+                    </a>
+                    <a class="img-item" href="">
+                        <img src="/images/pc.jpg" alt="" width="80">
+                    </a>
+                </div>
             </div>
             <div class="col-sm-8">
                 <h1>{{ $product->name }}</h1>
@@ -27,5 +41,9 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('script')
+    <script src="/js/product-js.js"></script>
 @stop
 
