@@ -16,7 +16,6 @@
 </head>
 
 <body>
-
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
     <div class="container">
         <a class="navbar-brand" href="">
@@ -118,6 +117,7 @@
 ================================================== -->
 <script src="{{ asset('/js/app.js') }}"></script>
 @yield('script')
+@include('sweetalert::alert')
 </body>
 </html>
 

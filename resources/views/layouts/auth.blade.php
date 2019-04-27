@@ -38,7 +38,9 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <script src="{{ asset('/js/app.js') }}"></script>
+@include('sweetalert::alert')
 @yield('script')
+
 </body>
 </html>
 

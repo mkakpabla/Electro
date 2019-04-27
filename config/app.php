@@ -177,6 +177,7 @@ return [
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
 
     ],

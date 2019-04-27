@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
 
-
     public function index()
     {
         $items = Cart::content();
@@ -22,33 +21,33 @@ class CartController extends Controller
             return $cartItem->id === $request->id;
         });
         if ($itemExist->isNotEmpty()) {
+            toast('Cet article se trouve déjà dans votre Panier.','info','top-right');
             return redirect()
-                ->route('cart.index')
-                ->with('info', 'Cet article se trouve déjà dans votre Panier.');
+                ->route('cart.index');
         }
 
         Cart::add($request->id, $request->name, 1, $request->price)
             ->associate(Product::class);
+        toast('Le produit a ete ajouter a votre panier','success','top-right');
         return redirect()
-            ->route('cart.index')
-            ->with('success', 'Le produit a ete ajouter a votre panier');
+            ->route('cart.index');
     }
 
     public function update(Request $request, $rowdId)
     {
         Cart::update($rowdId, $request->qty);
+        toast('L\'article a ete mis a jour','success','top-right');
         return redirect()
-            ->route('cart.index')
-            ->with('success', "L'article a ete mis a jour");
+            ->route('cart.index');
     }
 
 
     public function destroy($rowId)
     {
         Cart::remove($rowId);
+        toast('Le produit a ete supprimer de votre panier','info','top-right');
         return redirect()
-            ->route('cart.index')
-            ->with('success', 'Le produit a ete supprimer de votre panier');
+            ->route('cart.index');
     }
 
     public function later($rowId)

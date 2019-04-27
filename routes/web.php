@@ -33,3 +33,14 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::get('/logout', 'LoginController@logout')->name('logout');
     Route::get('/confirmed/{user}/{token}', 'ConfirmationController@store')->name('confirmed');
 });
+
+
+Route::group(['namespace' => 'Admin', 'middleware' => ['admin', 'auth']], function (){
+   Route::get('/admin', 'HomeController@index')->name('admin');
+   Route::get('/admin/products', 'ProductsController@index')->name('admin.products.index');
+   Route::get('/admin/products/create', 'ProductsController@create')->name('admin.products.create');
+   Route::get('/admin/products/{product}/edit', 'ProductsController@edit')->name('admin.products.edit');
+   Route::post('/admin/products', 'ProductsController@store')->name('admin.products.store');
+   Route::post('/admin/products/{product}', 'ProductsController@update')->name('admin.products.update');
+   Route::delete('/admin/products/{product}', 'ProductsController@destroy')->name('admin.products.destroy');
+});

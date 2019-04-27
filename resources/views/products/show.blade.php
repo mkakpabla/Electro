@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-sm-4">
-                <img src="/images/pc.jpg" alt="" width="350">
+                <img src="{{ $product->cover }}" alt="" width="350">
                 <div class="img-group mt-1">
                     <a class="img-item" href="">
                         <img src="/images/pc.jpg" alt="" width="80">

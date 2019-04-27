@@ -37,20 +37,20 @@ class LoginController extends Controller
         ]);
         if ($auth) {
             $uri = str_replace(url('/'), '', session()->get('url', '/'));
-            return redirect($uri)
-                ->with('success', 'Vous etes connecter avec success');
+            toast('Vous etes connecter avec success', 'success', 'top-right');
+            return redirect($uri);
         }
-        return back()
-            ->with('error','Identifiant ou mot de passe incorrecte');
+        toast('Identifiant ou mot de passe incorrecte', 'error', 'top-right');
+        return back();
         
     }
 
     public function logout()
     {
         auth()->logout();
+        toast('Vous etes maintenant deconnecter', 'success', 'top-right');
         return redirect()
-            ->route('shop.index')
-            ->with('success', 'Vous etee maintenant deconnecter');
+            ->route('login.create');
     }
 
 }

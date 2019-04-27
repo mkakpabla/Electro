@@ -43,7 +43,7 @@
                     @foreach($products as $product)
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
-                                <img src="/images/pc.jpg" alt="" class="card-img-top" width="100">
+                                <img src="{{ $product->cover }}" alt="" class="card-img-top" width="100">
                                 <div class="card-body">
                                     <h6 class="card-title">
                                         <a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a>

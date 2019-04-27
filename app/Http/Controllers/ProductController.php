@@ -10,6 +10,8 @@ class ProductController extends Controller
 {
 
 
+
+
     public function index()
     {
         if (\request()->category) {
