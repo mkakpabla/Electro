@@ -39,4 +39,9 @@ class ProductController extends Controller
             ->paginate(5);
         return view('search.index', compact('products'));
     }
+
+    public function cartStore(Request $request)
+    {
+
+    }
 }

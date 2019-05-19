@@ -15,10 +15,15 @@ class CartController extends Controller
         return view('cart.index', compact('items'));
     }
 
-    public function store(Request $request)
+    public function store(Product $product, Request $request)
     {
-        $itemExist = Cart::search(function ($cartItem, $rowId) use($request) {
-            return $cartItem->id === $request->id;
+        if ($request->qty) {
+            $qty = $request->qty;
+        } else {
+            $qty = 1;
+        }
+        $itemExist = Cart::search(function ($cartItem, $rowId) use($product) {
+            return $cartItem->id === $product->id;
         });
         if ($itemExist->isNotEmpty()) {
             toast('Cet article se trouve déjà dans votre Panier.','info','top-right');
@@ -26,7 +31,7 @@ class CartController extends Controller
                 ->route('cart.index');
         }
 
-        Cart::add($request->id, $request->name, 1, $request->price)
+        Cart::add($product->id, $product->name, $qty, $product->price)
             ->associate(Product::class);
         toast('Le produit a ete ajouter a votre panier','success','top-right');
         return redirect()

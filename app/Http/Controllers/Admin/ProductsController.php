@@ -35,7 +35,7 @@ class ProductsController extends Controller
             'details' => $request->details,
             'description' => $request->description,
             'cover' => '/uploads/' . $path
-        ]);
+        ])->categories()->attach($request->category_id);
         toast('Le produit a ete ajouter avec success');
         return back();
     }

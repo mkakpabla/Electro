@@ -2,7 +2,7 @@
 
 // Cart route
 Route::get('/cart', 'CartController@index')->name('cart.index');
-Route::post('/cart', 'CartController@store')->name('cart.store');
+Route::post('/cart/{product}', 'CartController@store')->name('cart.store');
 Route::delete('/cart/{id}', 'CartController@destroy')->name('cart.destroy');
 Route::post('/cart/later/{id}', 'CartController@later')->name('cart.later');
 Route::post('/cart/latertocart/{id}', 'CartController@laterToCart')->name('cart.laterToCart');
@@ -14,7 +14,7 @@ Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
 Route::delete('/coupon', 'CouponsController@destroy')->name('coupon.destroy');
 
 // Shop route
-Route::get('/', 'ProductController@index')->name('shop.index');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/boutique', 'ProductController@index')->name('shop.index');
 Route::get('/boutique/products/{product}', 'ProductController@show')->name('product.show');
 Route::get('/search', 'ProductController@search')->name('product.search');

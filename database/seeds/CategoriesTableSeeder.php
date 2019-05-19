@@ -13,12 +13,24 @@ class CategoriesTableSeeder extends Seeder
     {
         \App\Category::create([
             'name' => 'Laptops',
-            'slug' => 'laptops'
+            'slug' => 'laptops',
+            'cover' => '/images/shop01.png'
         ]);
 
         \App\Category::create([
-            'name' => 'Desktop',
-            'slug' => 'desktop'
+            'name' => 'Smartphones',
+            'slug' => 'smartphones',
+            'cover' => '/images/shop02.png'
+        ]);
+        \App\Category::create([
+            'name' => 'Cameras',
+            'slug' => 'cameras',
+            'cover' => '/images/shop03.png'
+        ]);
+        \App\Category::create([
+            'name' => 'Accessories',
+            'slug' => 'accessories',
+            'cover' => '/images/shop03.png'
         ]);
     }
 }
