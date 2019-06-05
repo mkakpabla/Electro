@@ -44,4 +44,13 @@ class ProductController extends Controller
     {
 
     }
+
+    public function filter(Request $request)
+    {
+        echo json_encode($request->all());
+
+        //$products = \Product::whereIn('category_id', $categories)->get();
+
+        //return view('products.index', compact('products'));
+    }
 }
