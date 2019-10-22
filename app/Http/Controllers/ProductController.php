@@ -15,12 +15,12 @@ class ProductController extends Controller
     public function index()
     {
         if (\request()->category) {
-            $products = Product::with('categories')->whereHas('categories', function ($query){
+            $products = Product::with('category')->whereHas('categories', function ($query){
                 $query->where('slug', \request()->category);
-            })->get();
+            })->paginate(10);
             $categories = Category::all();
         } else {
-            $products = Product::all();
+            $products = Product::with('category')->paginate(6);
             $categories = Category::all();
         }
 
@@ -45,12 +45,10 @@ class ProductController extends Controller
 
     }
 
-    public function filter(Request $request)
+    public function filter()
     {
-        echo json_encode($request->all());
 
-        //$products = \Product::whereIn('category_id', $categories)->get();
+        var_dump(\request()->all());
 
-        //return view('products.index', compact('products'));
     }
 }

@@ -26,6 +26,7 @@
 
 		<!-- Custom stlylesheet -->
 		<link type="text/css" rel="stylesheet" href="/css/style.css"/>
+		<link type="text/css" rel="stylesheet" href="/css/custom.css"/>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -262,7 +263,7 @@
 		<script src="/js/nouislider.min.js"></script>
 		<script src="/js/jquery.zoom.min.js"></script>
 		<script src="/js/main.js"></script>
-		<script src="/js/store.js"></script>
+		<script src="/js/shop.js"></script>
 
 	</body>
 </html>

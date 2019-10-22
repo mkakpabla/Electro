@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8db5b01eaf11aa1d98a1d95586efba46",
+    "content-hash": "2f12bd6a1efa6f0557c675cf1251dd27",
     "packages": [
         {
             "name": "bumbummen99/shoppingcart",
@@ -2124,6 +2124,70 @@
             "time": "2018-10-13T15:16:03+00:00"
         },
         {
+            "name": "qoraiche/laravel-mail-editor",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Qoraiche/laravel-mail-editor.git",
+                "reference": "b4794898e0987f7ff083b3981d27fa531e708245"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Qoraiche/laravel-mail-editor/zipball/b4794898e0987f7ff083b3981d27fa531e708245",
+                "reference": "b4794898e0987f7ff083b3981d27fa531e708245",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5",
+                "reecem/mocker": "1.1.*"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "~7.0",
+                "sempro/phpunit-pretty-print": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "qoraiche\\mailEclipse\\mailEclipseServiceProvider"
+                    ],
+                    "aliases": {
+                        "mailEclipse": "qoraiche\\mailEclipse\\Facades\\mailEclipse"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "qoraiche\\mailEclipse\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "yassine qoraiche",
+                    "email": "qoraicheofficiel@hotmail.com",
+                    "homepage": "https://github.com/qoraiche"
+                }
+            ],
+            "description": "Laravel Mailable Editor",
+            "homepage": "https://github.com/Qoraiche/laravel-mail-editor",
+            "keywords": [
+                "laravel",
+                "laravel-mail",
+                "laravel-mailable",
+                "mailEclipse",
+                "mailable",
+                "mailable-editor",
+                "markdown"
+            ],
+            "time": "2019-06-04T04:30:01+00:00"
+        },
+        {
             "name": "ralouphie/getallheaders",
             "version": "2.0.5",
             "source": {
@@ -2310,6 +2374,55 @@
                 "sweet-alert2"
             ],
             "time": "2019-03-29T18:34:57+00:00"
+        },
+        {
+            "name": "reecem/mocker",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ReeceM/mocker.git",
+                "reference": "34bdd68e5f2ecf175171872b0e5fbd4df27f2b29"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ReeceM/mocker/zipball/34bdd68e5f2ecf175171872b0e5fbd4df27f2b29",
+                "reference": "34bdd68e5f2ecf175171872b0e5fbd4df27f2b29",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/filesystem": "^5.6",
+                "illuminate/support": "^5.6"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.5",
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ReeceM\\Mocker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ReeceM",
+                    "email": "reecestevenmay@gmail.com",
+                    "homepage": "https://githib.com/reecem"
+                }
+            ],
+            "description": "Mock class constructor args based on the reflection class",
+            "homepage": "https://github.com/reecem/mocker",
+            "keywords": [
+                "helper",
+                "laravel",
+                "mockery",
+                "testing"
+            ],
+            "time": "2019-05-08T21:50:43+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

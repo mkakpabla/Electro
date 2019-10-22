@@ -64,7 +64,7 @@
                                     @foreach ($category->products->take(6) as $product)
                                         <div class="product">
                                             <div class="product-img">
-                                                <img src="{{ $product->cover }}" alt="">
+                                                <img src="{{ $product->cover }}" alt="" width="263" height="263">
                                             <div class="product-label">
                                                 <!--<span class="sale">-30%</span>-->
                                                 <span class="new">Nouveau</span>
@@ -193,7 +193,7 @@
                                     @foreach ($category->products as $product)
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="{{ $product->cover }}" alt="">
+                                            <img src="{{ $product->cover }}" alt="" width="263" height="263">
                                             <!--<div class="product-label">
                                                 <span class="sale">-30%</span>
                                                 <span class="new">NEW</span>

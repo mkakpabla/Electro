@@ -19,8 +19,9 @@ class ProductsTableSeeder extends Seeder
                 'details' => 'iusto laboriosam magni necessitatibus nulla, officiis, pariatur porro repudiandae voluptatem voluptatibus!',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consequuntur dicta fuga minima numquam quis unde. Architecto illum ipsam, iusto laboriosam magni necessitatibus nulla, officiis, pariatur porro repudiandae voluptatem voluptatibus!',
                 'cover' => '/images/product0' . rand(1, 9) . '.png',
-                'price' => 8000 + $i
-            ])->categories()->attach(rand(1, 4));
+                'price' => 8000 + $i,
+                'category_id' => rand(1, 4)
+            ]);
         }
     }
 }

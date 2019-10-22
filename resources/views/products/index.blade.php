@@ -60,15 +60,20 @@
                     <div class="aside">
                         <h3 class="aside-title">Categories</h3>
                         <div class="checkbox-filter">
-                        @foreach($categories as $category)
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="{{ $category->slug }}" value="{{ $category->id }}" name="categories[]">
-                                <label for="{{ $category->slug }}">
-                                    <span></span>
-                                    {{ $category->name }}
-                                </label>
-                            </div>
-                        @endforeach
+
+
+                                @foreach($categories as $category)
+                                    <div class="input-checkbox">
+                                        <input type="checkbox" id="{{ $category->slug }}" value="{{ $category->id }}" name="categories[]">
+                                        <label for="{{ $category->slug }}">
+                                            <span></span>
+                                            {{ $category->name }}
+                                        </label>
+                                    </div>
+                                @endforeach
+
+
+
                         </div>
                     </div>
                     <!-- /aside Widget -->
@@ -145,14 +150,14 @@
                         <div id="products" class="col-md-4 col-xs-6">
                             <div class="product">
                                 <div class="product-img">
-                                    <img src="{{ $product->cover }}" alt="">
-                                    <div class="product-label">
+                                    <img src="{{ $product->cover }}" alt="" width="263" height="263">
+                                <!--<div class="product-label">
                                         <span class="sale">-30%</span>
                                         <span class="new">NEW</span>
-                                    </div>
+                                    </div>-->
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">Category</p>
+                                    <p class="product-category">{{ $product->category->name }}</p>
                                     <h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
                                     <h4 class="product-price">{{ $product->price }}</h4>
                                     <div class="product-rating">
@@ -163,13 +168,10 @@
                                         <i class="fa fa-star"></i>
                                     </div>
                                     <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                        <a href="#" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Ajouter aux favoris</span></a>
+                                        <a href="#" class="add-to-compare"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Ajouter au panier</span></a>
+                                        <a href="#" class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Voir</span></a>
                                     </div>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Ajouter au panier</button>
                                 </div>
                             </div>
                         </div>
