@@ -2,52 +2,6 @@
 
 @section('content')
 
-
-    <!-- NAVIGATION -->
-    <nav id="navigation">
-        <!-- container -->
-        <div class="container">
-            <!-- responsive-nav -->
-            <div id="responsive-nav">
-                <!-- NAV -->
-                <ul class="main-nav nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Hot Deals</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">Laptops</a></li>
-                    <li><a href="#">Smartphones</a></li>
-                    <li><a href="#">Cameras</a></li>
-                    <li><a href="#">Accessories</a></li>
-                </ul>
-                <!-- /NAV -->
-            </div>
-            <!-- /responsive-nav -->
-        </div>
-        <!-- /container -->
-    </nav>
-    <!-- /NAVIGATION -->
-
-    <!-- BREADCRUMB -->
-    <div id="breadcrumb" class="section">
-        <!-- container -->
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="breadcrumb-tree">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">All Categories</a></li>
-                        <li><a href="#">Accessories</a></li>
-                        <li class="active">Headphones (227,490 Results)</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- /row -->
-        </div>
-        <!-- /container -->
-    </div>
-    <!-- /BREADCRUMB -->
-
     <!-- SECTION -->
     <div class="section">
         <!-- container -->
@@ -60,27 +14,22 @@
                     <div class="aside">
                         <h3 class="aside-title">Categories</h3>
                         <div class="checkbox-filter">
-
-
-                                @foreach($categories as $category)
-                                    <div class="input-checkbox">
-                                        <input type="checkbox" id="{{ $category->slug }}" value="{{ $category->id }}" name="categories[]">
-                                        <label for="{{ $category->slug }}">
-                                            <span></span>
-                                            {{ $category->name }}
-                                        </label>
-                                    </div>
-                                @endforeach
-
-
-
+                            @foreach($categories as $category)
+                                <div class="input-checkbox">
+                                    <input type="checkbox" id="{{ $category->slug }}" value="{{ $category->id }}" name="categories[]">
+                                    <label for="{{ $category->slug }}">
+                                        <span></span>
+                                        {{ $category->name }}
+                                    </label>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                     <!-- /aside Widget -->
 
                     <!-- aside Widget -->
                     <div class="aside">
-                        <h3 class="aside-title">Price</h3>
+                        <h3 class="aside-title">Prix</h3>
                         <div class="price-filter">
                             <div id="price-slider"></div>
                             <div class="input-number price-min">
@@ -98,36 +47,12 @@
                     </div>
                     <!-- /aside Widget -->
 
-
-
                     <!-- aside Widget -->
                     <div class="aside">
-                        <h3 class="aside-title">Top selling</h3>
+                        <h3 class="aside-title">Meilleurs Ventes</h3>
                         <div class="product-widget">
                             <div class="product-img">
                                 <img src="./img/product01.png" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                            </div>
-                        </div>
-
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product02.png" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                            </div>
-                        </div>
-
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product03.png" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -150,7 +75,7 @@
                         <div id="products" class="col-md-4 col-xs-6">
                             <div class="product">
                                 <div class="product-img">
-                                    <img src="{{ $product->cover }}" alt="" width="263" height="263">
+                                    <img class="product-cover" src="{{ $product->cover }}" alt="" width="263" height="263">
                                 <!--<div class="product-label">
                                         <span class="sale">-30%</span>
                                         <span class="new">NEW</span>
@@ -158,7 +83,7 @@
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">{{ $product->category->name }}</p>
-                                    <h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
+                                    <h3 class="product-name">{{ $product->name }}</h3>
                                     <h4 class="product-price">{{ $product->price }}</h4>
                                     <div class="product-rating">
                                         <i class="fa fa-star"></i>
@@ -169,8 +94,8 @@
                                     </div>
                                     <div class="product-btns">
                                         <a href="#" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Ajouter aux favoris</span></a>
-                                        <a href="#" class="add-to-compare"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Ajouter au panier</span></a>
-                                        <a href="#" class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Voir</span></a>
+                                        <a href="/cart/{{ $product->id }}/store" class="add-to-cart-btn add-to-compare"><i class="fa fa-shopping-cart"></i></a>
+                                        <a href="{{ route('product.show', $product) }}" class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Voir</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -182,14 +107,7 @@
 
                     <!-- store bottom filter -->
                     <div class="store-filter clearfix">
-                        <span class="store-qty">Showing 20-100 products</span>
-                        <ul class="store-pagination">
-                            <li class="active">1</li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                        </ul>
+                        {{ $products->links() }}
                     </div>
                     <!-- /store bottom filter -->
                 </div>

@@ -1,29 +1,6 @@
 @extends('layouts.electro')
 
 @section('content')
-    <!-- NAVIGATION -->
-    <nav id="navigation">
-        <!-- container -->
-        <div class="container">
-            <!-- responsive-nav -->
-            <div id="responsive-nav">
-                <!-- NAV -->
-                <ul class="main-nav nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Hot Deals</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">Laptops</a></li>
-                    <li><a href="#">Smartphones</a></li>
-                    <li><a href="#">Cameras</a></li>
-                    <li><a href="#">Accessories</a></li>
-                </ul>
-                <!-- /NAV -->
-            </div>
-            <!-- /responsive-nav -->
-        </div>
-        <!-- /container -->
-    </nav>
-    <!-- /NAVIGATION -->
 
     <!-- BREADCRUMB -->
     <div id="breadcrumb" class="section">
@@ -33,11 +10,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul class="breadcrumb-tree">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">All Categories</a></li>
-                        <li><a href="#">Accessories</a></li>
-                        <li><a href="#">Headphones</a></li>
-                        <li class="active">Product name goes here</li>
+                        <li><a href="{{ route('home') }}">Accueil</a></li>
+                        <li><a href="{{ route('shop.index') }}">Tous les Categories</a></li>
+                        <li><a href="{{ route('shop.index', ['category' => $product->category->slug]) }}">{{ $product->category->name }}</a></li>
+                        <li class="active">{{ $product->name }}</li>
                     </ul>
                 </div>
             </div>
@@ -118,10 +94,10 @@
                             </form>
                         @endif
                         <ul class="product-links">
-                            <li>Categorie</li>
-                            @foreach ($product->categories as $category)
-                                <li><a href="#">{{ $category->name }}</a></li>
-                            @endforeach
+                            <li>Categorie:</li>
+                            <li><a href="{{ route('shop.index', ['category' => $product->category->slug]) }}">
+                                    {{ $product->category->name }}
+                                </a></li>
                         </ul>
 
                         <ul class="product-links">
@@ -369,7 +345,7 @@
                         <h3 class="title">Les Produits similaires</h3>
                     </div>
                 </div>
-                @foreach($product->categories()->first()->products->take(4) as $product)
+                @foreach($product->category()->first()->products->take(4) as $product)
                 <!-- product -->
                 <div class="col-md-3 col-xs-6">
                     <div class="product">
@@ -377,7 +353,7 @@
                             <img src="{{ $product->cover }}" alt="">
                         </div>
                         <div class="product-body">
-                            <p class="product-category">{{ $product->categories()->first()->name }}</p>
+                            <p class="product-category">{{ $product->category()->first()->name }}</p>
                             <h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
                             <h4 class="product-price">EUR {{ $product->price }}</h4>
                             <div class="product-rating">

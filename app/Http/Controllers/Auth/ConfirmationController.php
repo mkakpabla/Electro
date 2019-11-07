@@ -17,7 +17,9 @@ class ConfirmationController extends Controller
                 'token' => null,
                 'email_verified_at' => now()
             ]);
-            return view('auth.confirmed');
+            alert('Comfirmation','Votre addresse email a été comfirmé avec success','success');
+            return redirect()
+                ->route('login.create');
         }
 
     }

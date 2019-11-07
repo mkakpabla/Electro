@@ -15,8 +15,9 @@ class CartController extends Controller
         return view('cart.index', compact('items'));
     }
 
-    public function store(Product $product, Request $request)
+    public function store($id, Request $request)
     {
+        $product = Product::find($id);
         if ($request->qty) {
             $qty = $request->qty;
         } else {
@@ -26,16 +27,17 @@ class CartController extends Controller
             return $cartItem->id === $product->id;
         });
         if ($itemExist->isNotEmpty()) {
-            toast('Cet article se trouve déjà dans votre Panier.','info','top-right');
-            return redirect()
-                ->route('cart.index');
+            return [
+                'msg' => 'Cet article se trouve déjà dans votre Panier.',
+                'cart' => $this->cart(),
+            ];
         }
-
         Cart::add($product->id, $product->name, $qty, $product->price)
             ->associate(Product::class);
-        toast('Le produit a ete ajouter a votre panier','success','top-right');
-        return redirect()
-            ->route('cart.index');
+        return [
+            'msg' => 'Le produit à été ajouté au panier',
+            'cart' => $this->cart(),
+        ];
     }
 
     public function update(Request $request, $rowdId)
@@ -45,7 +47,6 @@ class CartController extends Controller
         return redirect()
             ->route('cart.index');
     }
-
 
     public function destroy($rowId)
     {
@@ -83,5 +84,22 @@ class CartController extends Controller
         return redirect()
             ->route('cart.index')
             ->with('success', 'Le produit a ete supprimer de votre panier enregistrer');
+    }
+
+    private function cart()
+    {
+        $cart = [
+            'subtotal' => Cart::subtotal(),
+            'count' => Cart::instance('default')->count(),
+        ];
+        foreach (Cart::content() as $item) {
+            $cart['items'][] = [
+                'cover' => $item->model->cover,
+                'name' => $item->name,
+                'price' => $item->price,
+                'qty' => $item->qty,
+            ];
+        }
+        return $cart;
     }
 }

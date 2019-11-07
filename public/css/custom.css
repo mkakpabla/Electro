@@ -1,5 +1,7 @@
 /* Products button */
-.product .product-body .product-btns>a {
+.product .product-body .product-btns>a,
+.product .product-body .product-btns>form button{
+    outline: none;
     display: inline-block;
     cursor: pointer;
     position: relative;
@@ -12,13 +14,15 @@
     transition: 0.2s all;
 }
 
-.product .product-body .product-btns>a:hover {
+.product .product-body .product-btns>a:hover,
+.product .product-body .product-btns>form button:hover{
     background-color: #E4E7ED;
     color: #D10024;
     border-radius: 50%;
 }
 
-.product .product-body .product-btns>a .tooltipp {
+.product .product-body .product-btns>a .tooltipp,
+.product .product-body .product-btns>form button span {
     position: absolute;
     bottom: 100%;
     left: 50%;

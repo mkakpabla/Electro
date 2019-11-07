@@ -59,6 +59,8 @@
 			</div>
 			<!-- /TOP HEADER -->
 
+
+
 			<!-- MAIN HEADER -->
 			<div id="header">
 				<!-- container -->
@@ -112,23 +114,19 @@
                                             @foreach (Cart::content() as $item)
                                                 <div class="product-widget">
                                                     <div class="product-img">
-                                                        <img src="{{ $item->cover }}" alt="">
+                                                        <img src="{{ $item->model->cover }}" alt="">
                                                     </div>
                                                     <div class="product-body">
                                                         <h3 class="product-name"><a href="#">{{ $item->name }}</a></h3>
                                                         <h4 class="product-price"><span class="qty">{{ $item->qty }}x</span>{{ $item->subtotal }}</h4>
                                                     </div>
-                                                    <form style="display: inline;" action="{{ route('cart.destroy', $item->rowId) }}" method="POST" >
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="delete"><i class="fa fa-close"></i></button>
-                                                    </form>
+                                                    <a href="" class="delete"><i class="fa fa-close"></i></a>
                                                 </div>
                                             @endforeach
 										</div>
 										<div class="cart-summary">
-											<small>{{ Cart::instance('default')->count() }} Articles</small>
-											<h5>SUBTOTAL: {{ Cart::subtotal() }}</h5>
+											<small class="count">{{ Cart::instance('default')->count() }} Articles</small>
+											<h5 class="subtotal">Prix du Panier: {{ Cart::subtotal() }}</h5>
 										</div>
 										<div class="cart-btns">
 											<a href="{{ route('cart.index') }}">Mon Panier</a>
@@ -157,6 +155,27 @@
 			<!-- /MAIN HEADER -->
 		</header>
 		<!-- /HEADER -->
+        <!-- NAVIGATION -->
+        <nav id="navigation">
+            <!-- container -->
+            <div class="container">
+                <!-- responsive-nav -->
+                <div id="responsive-nav">
+                    <!-- NAV -->
+                    <ul class="main-nav nav navbar-nav">
+                        <li class="{{ Route::is('home') ? ' active' : '' }}"><a href="{{ route('home') }}">Accueil</a></li>
+                        <li class="{{ Route::is('shop.index') && request()->category == null ? ' active' : '' }}"><a href="{{ route('shop.index') }}">Boutique</a></li>
+                        @foreach($categories as $category)
+                            <li class="{{ Route::is('shop.index') && request()->category == $category->slug ? ' active' : '' }}"><a href="{{ route('shop.index', ['category' => $category->slug]) }}">{{ $category->name }}</a></li>
+                        @endforeach
+                    </ul>
+                    <!-- /NAV -->
+                </div>
+                <!-- /responsive-nav -->
+            </div>
+            <!-- /container -->
+        </nav>
+        <!-- /NAVIGATION -->
 
         @yield('content')
 
@@ -263,6 +282,8 @@
 		<script src="/js/nouislider.min.js"></script>
 		<script src="/js/jquery.zoom.min.js"></script>
 		<script src="/js/main.js"></script>
+		<script src="/js/zenjs.js"></script>
+		<script src="/js/cart.js"></script>
 		<script src="/js/shop.js"></script>
 
 	</body>

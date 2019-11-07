@@ -33,6 +33,7 @@ class RegisterController extends Controller
            'password' => Hash::make($request->password)
         ]);
         Mail::to($user)->send(new RegisterMail($user));
+        alert('Confirmation', 'Un email vous a été envoyer à votre addresse mail', 'info');
         return redirect()
             ->route('login.create');
     }

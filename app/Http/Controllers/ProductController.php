@@ -10,12 +10,10 @@ class ProductController extends Controller
 {
 
 
-
-
     public function index()
     {
         if (\request()->category) {
-            $products = Product::with('category')->whereHas('categories', function ($query){
+            $products = Product::with('category')->whereHas('category', function ($query){
                 $query->where('slug', \request()->category);
             })->paginate(10);
             $categories = Category::all();
@@ -23,8 +21,7 @@ class ProductController extends Controller
             $products = Product::with('category')->paginate(6);
             $categories = Category::all();
         }
-
-        return view('products.index', compact('products', 'categories'));
+        return view('products.index', compact('products', 'topSelling', 'categories'));
     }
 
     public function show(Product $product)
@@ -40,15 +37,19 @@ class ProductController extends Controller
         return view('search.index', compact('products'));
     }
 
-    public function cartStore(Request $request)
+
+    public function filter(Request $request)
     {
-
-    }
-
-    public function filter()
-    {
-
-        var_dump(\request()->all());
+        if (empty($request->categories)) {
+            $product = Product::with('category')->get()->toArray();
+            return $product;
+        } else {
+            $product = Product::with('category')
+                ->whereIn('category_id', array_values($request->categories))
+                ->get()
+                ->toArray();
+            return $product;
+        }
 
     }
 }
