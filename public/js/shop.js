@@ -51,8 +51,7 @@ let singleItem = function (item) {
                     </div>
                     <div class="product-btns">
                         <a href="#" class="add-to-wishlist"><i class="fa fa-heart-o"></i></a>
-                        
-                        
+                        <a href="/cart/${item.id}/store" class="add-to-cart-btn add-to-compare"><i class="fa fa-shopping-cart"></i></a>
                         <a href="/shop/products/${item.slug}" class="quick-view"><i class="fa fa-eye"></i></a>
                     </div>
                 </div>

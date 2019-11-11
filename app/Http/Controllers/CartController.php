@@ -27,17 +27,28 @@ class CartController extends Controller
             return $cartItem->id === $product->id;
         });
         if ($itemExist->isNotEmpty()) {
-            return [
-                'msg' => 'Cet article se trouve déjà dans votre Panier.',
-                'cart' => $this->cart(),
-            ];
+            if ($request->ajax()) {
+                return [
+                    'msg' => 'Cet article se trouve déjà dans votre Panier.',
+                    'cart' => $this->cart(),
+                ];
+            } else {
+                return redirect()
+                    ->route('cart.index');
+            }
         }
         Cart::add($product->id, $product->name, $qty, $product->price)
             ->associate(Product::class);
-        return [
-            'msg' => 'Le produit à été ajouté au panier',
-            'cart' => $this->cart(),
-        ];
+        if ($request->ajax()) {
+            return [
+                'msg' => 'Le produit à été ajouté au panier',
+                'cart' => $this->cart(),
+            ];
+        } else {
+            return redirect()
+                ->route('cart.index');
+        }
+
     }
 
     public function update(Request $request, $rowdId)
@@ -50,10 +61,15 @@ class CartController extends Controller
 
     public function destroy($rowId)
     {
-        Cart::remove($rowId);
-        toast('Le produit a ete supprimer de votre panier','info','top-right');
-        return redirect()
-            ->route('cart.index');
+        if (\request()->ajax()) {
+            Cart::remove($rowId);
+            return $this->cart();
+        } else {
+            Cart::remove($rowId);
+            return redirect()
+                ->route('cart.index');
+        }
+
     }
 
     public function later($rowId)
@@ -94,10 +110,12 @@ class CartController extends Controller
         ];
         foreach (Cart::content() as $item) {
             $cart['items'][] = [
-                'cover' => $item->model->cover,
+                'id' => $item->id,
+                'rowId' => $item->rowId,
                 'name' => $item->name,
                 'price' => $item->price,
                 'qty' => $item->qty,
+                'cover' => $item->model->cover,
             ];
         }
         return $cart;

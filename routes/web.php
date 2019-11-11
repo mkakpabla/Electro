@@ -3,7 +3,9 @@
 // Cart route
 Route::get('/cart', 'CartController@index')->name('cart.index');
 Route::get('/cart/{id}/store', 'CartController@store')->name('cart.store');
-Route::delete('/cart/{id}', 'CartController@destroy')->name('cart.destroy');
+Route::post('/cart/{id}/store', 'CartController@store')->name('cart.store');
+Route::get('/cart/{id}/delete', 'CartController@destroy')->name('cart.delete');
+Route::delete('/cart/{id}/delete', 'CartController@destroy')->name('cart.delete');
 Route::post('/cart/later/{id}', 'CartController@later')->name('cart.later');
 Route::post('/cart/latertocart/{id}', 'CartController@laterToCart')->name('cart.laterToCart');
 Route::delete('/cart/latertocart/{id}', 'CartController@laterDestroy')->name('cart.laterDestroy');

@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Electro - HTML Ecommerce Template</title>
+		<title>Electro - Site de vente de d'appareils electroniques et accessories</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -81,13 +81,13 @@
 						<div class="col-md-8">
 							<div class="header-search">
 								<form>
-									<select style="width: 200px" class="input-select">
-										<option value="0">Tous les Categories</option>
+									<select class="input-select">
+										<option value="0">Categories</option>
 										@foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
 										@endforeach
 									</select>
-									<input style="width: 400px" class="input" placeholder="Recherche...">
+									<input class="input" placeholder="Recherche...">
 									<button class="search-btn">Recherche</button>
 								</form>
 							</div>
@@ -120,7 +120,7 @@
                                                         <h3 class="product-name"><a href="#">{{ $item->name }}</a></h3>
                                                         <h4 class="product-price"><span class="qty">{{ $item->qty }}x</span>{{ $item->subtotal }}</h4>
                                                     </div>
-                                                    <a href="" class="delete"><i class="fa fa-close"></i></a>
+                                                    <a href="{{ route('cart.delete', $item->rowId) }}" class="delete"><i class="fa fa-close"></i></a>
                                                 </div>
                                             @endforeach
 										</div>
