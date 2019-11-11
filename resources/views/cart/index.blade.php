@@ -69,52 +69,38 @@
                 Votre Panier est vide
             </div>
         @endif
-    <!--
-
-
-            @if (Cart::count() > 0)
-            <h2>Votre Panier({{ Cart::count() }} article)</h2>
-
-
-                </div>
-
-            @else
-
-            @endif
         @if (Cart::instance('later')->count() > 0)
-            <h2 class="mt-5">Enregistré pour plus tard ({{ Cart::instance('later')->count() }} article)</h2>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Quantiter</th>
-                    <th scope="col">Prix</th>
-                    <th scope="col">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach(Cart::instance('later')->content() as $item)
-                    <tr>
-                        <th scope="row">{{ $item->name }}</th>
-                        <td>{{ $item->qty }}</td>
-                        <td>{{ $item->subtotal }}</td>
-                        <td>
-                            <form style="display: inline;" action="{{ route('cart.laterDestroy', $item->rowId) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger btn-sm">Supprimer</button>
-                            </form>
-                            <form style="display: inline;" action="{{ route('cart.laterToCart', $item->rowId) }}" method="POST">
-                                @csrf
-                                <button class="btn btn-primary btn-sm">Deplacer dans le panier</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 style="font-size: 20px; font-weight: lighter">Mise de coté pour plus tard</h1>
+                    <hr style="margin-top: 0">
+                    @foreach(Cart::instance('later')->content() as $item)
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img src="{{ $item->model->cover }}" alt="" height="150">
+                            </div>
+                            <div class="col-md-8" style="padding-left: 50px">
+                                <h2 style="font-size: 18px">
+                                    <a href="">{{ $item->name }}</a>
+                                </h2>
+                                <p class="text-muted">{{ $item->model->category->name }}</p>
+                                <h1 style="font-size: 18px">Prix: EUR {{ number_format($item->subtotal, 2, '.', ' ') }}</h1>
+                                <form style="display: inline;" action="{{ route('cart.laterDestroy', $item->rowId) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-sm">Supprimer</button>
+                                </form>
+                                <form style="display: inline;" action="{{ route('cart.laterToCart', $item->rowId) }}" method="POST">
+                                    @csrf
+                                    <button class="btn btn-primary btn-sm">Deplacer dans le panier</button>
+                                </form>
+                            </div>
+                        </div>
+                        <hr style="margin-top: 0">
+                    @endforeach
+                </div>
+            </div>
         @endif
-        -->
     </div>
 @stop
 @section('script')
