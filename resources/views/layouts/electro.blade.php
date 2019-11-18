@@ -285,6 +285,7 @@
 		<script src="/js/zenjs.js"></script>
 		<script src="/js/cart.js"></script>
 		<script src="/js/shop.js"></script>
+        @yield('scripts')
 
 	</body>
 </html>

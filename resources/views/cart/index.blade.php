@@ -22,7 +22,7 @@
                             <form  style="display: inline;" action="{{ route('cart.update', $item->rowId) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
-                                <select name="qty" id="qty" class="form-control" style="width: 70px; display: inline">
+                                <select name="qty" class="qty form-control" style="width: 70px; display: inline">
                                     <option value="1" {!! 1 == $item->qty ? 'selected' : '' !!}>1</option>
                                     <option value="2" {!! 2 == $item->qty ? 'selected' : '' !!}>2</option>
                                     <option value="2" {!! 3 == $item->qty ? 'selected' : '' !!}>3</option>
@@ -101,11 +101,87 @@
                 </div>
             </div>
         @endif
+
+        <div class="row">
+            <div class="section">
+                <!-- container -->
+                <div class="container">
+                    <!-- row -->
+                    <div class="row">
+
+                        <!-- section title -->
+                        <div class="col-md-12">
+                            <div class="section-title">
+                                <h3 class="title">Meilleurs ventes</h3>
+                                <div class="section-nav">
+                                    <ul class="section-tab-nav tab-nav">
+                                        @foreach($categories as $key => $category)
+                                            <li class="{!! $key == 1 ? 'active' : '' !!}"><a data-toggle="tab" href="#{{ $category->slug }}2">{{ $category->name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /section title -->
+
+                        <!-- Products tab & slick -->
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="products-tabs">
+                                    <!-- tab -->
+                                    @foreach($categories as $key => $category)
+                                        <div id="{{ $category->slug }}2" class="tab-pane fade in {!! $key == 1 ? 'active' : '' !!}">
+                                            <div class="products-slick" data-nav="#slick-nav-{{ $key }}">
+                                                <!-- product -->
+                                                @foreach ($category->products as $product)
+                                                    <div class="product">
+                                                        <div class="product-img">
+                                                            <img src="{{ $product->cover }}" alt="" width="263" height="263">
+                                                            <!--<div class="product-label">
+                                                                <span class="sale">-30%</span>
+                                                                <span class="new">NEW</span>
+                                                            </div>-->
+                                                        </div>
+                                                        <div class="product-body">
+                                                            <p class="product-category">{{ $category->name }}</p>
+                                                            <h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
+                                                            <h4 class="product-price">{{ $product->price }} FCFA</h4>
+                                                            <div class="product-rating">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                            </div>
+                                                            <div class="product-btns">
+                                                                <a href="#" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Ajouter aux favoris</span></a>
+                                                                <a href="/cart/{{ $product->id }}/store" class="add-to-cart-btn add-to-compare"><i class="fa fa-shopping-cart"></i></a>
+                                                                <a href="{{ route('product.show', $product) }}" class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Voir</span></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            @endforeach
+                                            <!-- /product -->
+                                            </div>
+                                        <!--<div id="slick-nav-{{ $key }}" class="products-slick-nav"></div>-->
+                                        </div>
+                                @endforeach
+                                <!-- /tab -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Products tab & slick -->
+                    </div>
+                    <!-- /row -->
+                </div>
+                <!-- /container -->
+            </div>
+        </div>
     </div>
 @stop
-@section('script')
+@section('scripts')
     <script>
-        let qties = document.querySelectorAll('#qty');
+        let qties = document.querySelectorAll('.qty');
         qties.forEach(function (qty) {
             qty.addEventListener('change', function () {
                 this.parentNode.submit()

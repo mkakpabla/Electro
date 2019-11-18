@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -12,7 +13,8 @@ class CartController extends Controller
     public function index()
     {
         $items = Cart::content();
-        return view('cart.index', compact('items'));
+        $categories = Category::all();
+        return view('cart.index', compact('items', 'categories'));
     }
 
     public function store($id, Request $request)
@@ -45,6 +47,7 @@ class CartController extends Controller
                 'cart' => $this->cart(),
             ];
         } else {
+            session()->flash('success', "L'article a été ajouté au panier");
             return redirect()
                 ->route('cart.index');
         }
@@ -54,7 +57,7 @@ class CartController extends Controller
     public function update(Request $request, $rowdId)
     {
         Cart::update($rowdId, $request->qty);
-        toast('L\'article a ete mis a jour','success','top-right');
+        session()->flash('success', 'L\'article a été mis à jour');
         return redirect()
             ->route('cart.index');
     }
@@ -66,6 +69,7 @@ class CartController extends Controller
             return $this->cart();
         } else {
             Cart::remove($rowId);
+            session()->flash('success', "L'article a été supprimé du panier");
             return redirect()
                 ->route('cart.index');
         }

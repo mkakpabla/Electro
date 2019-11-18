@@ -23,22 +23,12 @@
 
 </div><!-- /.container -->
 
-<footer class="footer pt-4 pt-md-5 border-top mt-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md">
-                <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
-            </div>
-        </div>
-    </div>
 
-</footer>
 
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <script src="{{ asset('/js/app.js') }}"></script>
-@include('sweetalert::alert')
 @yield('script')
 
 </body>
