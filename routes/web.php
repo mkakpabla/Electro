@@ -39,7 +39,7 @@ Route::group(['namespace' => 'Auth'], function () {
 
 
 Route::group(['namespace' => 'Admin', 'middleware' => ['admin', 'auth']], function (){
-   Route::get('/admin', 'HomeController@index')->name('admin');
+   Route::get('/admin', 'DashboardController@index')->name('admin');
    Route::get('/admin/products', 'ProductsController@index')->name('admin.products.index');
    Route::get('/admin/products/create', 'ProductsController@create')->name('admin.products.create');
    Route::get('/admin/products/{product}/edit', 'ProductsController@edit')->name('admin.products.edit');

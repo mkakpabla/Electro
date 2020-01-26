@@ -1,77 +1,68 @@
 @extends('layouts.admin')
+
 @section('content')
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            Produits
-            <small>Gestion des produits</small>
-        </h1>
-    </section>
-
-    <!-- Main content -->
-    <section class="content container-fluid">
-
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box box-primary">
-                    <div class="box-header">
-                        <h3 class="box-title">
-                            <a class="btn btn-primary" href="{{ route('admin.products.create') }}">
-                                <i class="fa fa-plus"></i>
-                                Ajouter un nouveau produit
-                            </a>
-                        </h3>
-
-                        <div class="box-tools">
-                            <div class="input-group input-group-sm" style="width: 300px;">
-                                <input type="text" name="table_search" class="form-control pull-right" placeholder="Recherche...">
-                                <div class="input-group-btn">
-                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
-                            <tbody><tr>
-                                <th>ID</th>
-                                <th>Nom</th>
-                                <th>Prix</th>
-                                <th>Actions</th>
-                            </tr>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Produits</h4>
+                    <a href="{{ route('admin.products.create') }}" class="btn btn-success">Ajouter un nouveau produit</a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class=" text-primary">
+                            <th>
+                                Titre
+                            </th>
+                            <th>
+                                Catégorie
+                            </th>
+                            <th>
+                                Le Prix
+                            </th>
+                            <th>
+                                Disponibilité
+                            </th>
+                            <th class="text-right">
+                                Actions
+                            </th>
+                            </thead>
+                            <tbody>
                             @foreach($products as $product)
                                 <tr>
-                                    <td>{{ $product->id }}</td>
-                                    <td>{{ $product->name }}</td>
-                                    <td>{{ $product->price }}</td>
                                     <td>
-                                        <a class="btn btn-primary" href="{{ route('admin.products.edit', $product) }}">
-                                            <i class="fa fa-edit"></i>
-                                            Editer
-                                        </a>
+                                        {{ $product->name }}
+                                    </td>
+                                    <td>
+                                        {{ $product->category->name }}
+                                    </td>
+                                    <td>
+                                        {{ $product->price }}
+                                    </td>
+                                    <td>
+                                        @if ($product->quantity > 0)
+                                            <span class="badge badge-success">En Stock</span>
+                                        @else
+                                            <span class="badge badge-warning">Pas En Stock</span>
+                                        @endif
 
-                                        <form onclick="alert('Le produit sera supprimer avec definitivement')" style="display: inline" action="{{ route('admin.products.destroy', $product) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger">
-                                                <i class="fa fa-trash-o"></i>
-                                                Supprimer
-                                            </button>
-                                        </form>
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-primary">Editer</button>
+                                        <button class="btn btn-danger">Supprimer</button>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.box-body -->
                 </div>
-                <!-- /.box -->
             </div>
         </div>
+    </div>
+@endsection
 
-    </section>
-    <!-- /.content -->
+@section('scripts')
 
-@stop
+@endsection

@@ -144,7 +144,7 @@
                                                         </div>
                                                         <div class="product-body">
                                                             <p class="product-category">{{ $category->name }}</p>
-                                                            <h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
+                                                        <h3 class="product-name"><a href="{{ route('product.show', $product)}}">{{ $product->name }}</a></h3>
                                                             <h4 class="product-price">{{ $product->price }} FCFA</h4>
                                                             <div class="product-rating">
                                                                 <i class="fa fa-star"></i>
@@ -153,10 +153,8 @@
                                                                 <i class="fa fa-star"></i>
                                                                 <i class="fa fa-star"></i>
                                                             </div>
-                                                            <div class="product-btns">
-                                                                <a href="#" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Ajouter aux favoris</span></a>
-                                                                <a href="/cart/{{ $product->id }}/store" class="add-to-cart-btn add-to-compare"><i class="fa fa-shopping-cart"></i></a>
-                                                                <a href="{{ route('product.show', $product) }}" class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Voir</span></a>
+                                                            <div>
+                                                                <button class="button fa fa-shopping-cart"> Ajouter au panier</button>
                                                             </div>
                                                         </div>
                                                     </div>

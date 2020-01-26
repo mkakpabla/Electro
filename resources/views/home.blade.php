@@ -15,6 +15,7 @@
                             <img src="{{ $category->cover }}" alt="">
                         </div>
                         <div class="shop-body">
+
                             <h3>Collection<br>{{ $category->name }}</h3>
                             <a href="{{ route('shop.index') }}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
@@ -72,7 +73,7 @@
                                             </div>
                                             <div class="product-body">
                                                 <p class="product-category">{{ $category->name }}</p>
-                                                <h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
+                                                <h3 class="product-name"><a href="{{ route('product.show', $product)}}">{{ $product->name }}</a></h3>
                                                 <h4 class="product-price">{{ $product->price }} FCFA</h4>
                                                 <div class="product-rating">
                                                     <i class="fa fa-star"></i>
@@ -81,10 +82,8 @@
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                 </div>
-                                                <div class="product-btns">
-                                                    <a href="#" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Ajouter aux favoris</span></a>
-                                                    <a href="/cart/{{ $product->id }}/store" class="add-to-cart-btn add-to-compare"><i class="fa fa-shopping-cart"></i></a>
-                                                    <a href="{{ route('product.show', $product) }}" class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Voir</span></a>
+                                                <div>
+                                                    <button class="button fa fa-shopping-cart"> Ajouter au panier</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -140,18 +139,19 @@
                                 <div class="products-slick" data-nav="#slick-nav-{{ $key }}">
                                     <!-- product -->
                                     @foreach ($category->products as $product)
+                                    <!-- product -->
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="{{ $product->cover }}" alt="" width="263" height="263">
+                                            <img class="product-cover" src="{{ $product->cover }}" alt="" width="263" height="263">
                                             <!--<div class="product-label">
-                                                <span class="sale">-30%</span>
-                                                <span class="new">NEW</span>
-                                            </div>-->
+                                                    <span class="sale">-30%</span>
+                                                    <span class="new">NEW</span>
+                                                </div>-->
                                         </div>
                                         <div class="product-body">
-                                            <p class="product-category">{{ $category->name }}</p>
-                                            <h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
-                                            <h4 class="product-price">{{ $product->price }} FCFA</h4>
+                                            <p class="product-category">{{ $product->category->name }}</p>
+                                            <h3 class="product-name">{{ $product->name }}</h3>
+                                            <h4 class="product-price">{{ $product->price }}</h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -159,13 +159,12 @@
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                             </div>
-                                            <div class="product-btns">
-                                                <a href="#" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Ajouter aux favoris</span></a>
-                                                <a href="/cart/{{ $product->id }}/store" class="add-to-cart-btn add-to-compare"><i class="fa fa-shopping-cart"></i></a>
-                                                <a href="{{ route('product.show', $product) }}" class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Voir</span></a>
+                                            <div>
+                                                <button class="button fa fa-shopping-cart"> Ajouter au panier</button>
                                             </div>
                                         </div>
                                     </div>
+    <!-- /product -->
                                     @endforeach
                                     <!-- /product -->
                                 </div>

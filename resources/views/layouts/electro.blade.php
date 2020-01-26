@@ -8,9 +8,9 @@
 
 		<title>Electro - Site de vente de d'appareils electroniques et accessories</title>
 
-		<!-- Google font -->
+		<!-- Google font
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-
+        -->
 		<!-- Bootstrap -->
 		<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
 
@@ -179,6 +179,10 @@
 
         @yield('content')
 
+        <div class="cart-box">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="qty">0</span>
+        </div>
 		<!-- FOOTER -->
 		<footer id="footer">
 			<!-- top footer -->
@@ -283,8 +287,6 @@
 		<script src="/js/jquery.zoom.min.js"></script>
 		<script src="/js/main.js"></script>
 		<script src="/js/zenjs.js"></script>
-		<script src="/js/cart.js"></script>
-		<script src="/js/shop.js"></script>
         @yield('scripts')
 
 	</body>

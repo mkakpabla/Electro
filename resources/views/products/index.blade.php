@@ -69,46 +69,7 @@
                 <div id="store" class="col-md-9">
 
                     <!-- store products -->
-                    <div id="products-store" class="row">
-                        @foreach($products as $product)
-                        <!-- product -->
-                        <div id="products" class="col-md-4 col-xs-6">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img class="product-cover" src="{{ $product->cover }}" alt="" width="263" height="263">
-                                <!--<div class="product-label">
-                                        <span class="sale">-30%</span>
-                                        <span class="new">NEW</span>
-                                    </div>-->
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">{{ $product->category->name }}</p>
-                                    <h3 class="product-name">{{ $product->name }}</h3>
-                                    <h4 class="product-price">{{ $product->price }}</h4>
-                                    <div class="product-rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <div class="product-btns">
-                                        <a href="#" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Ajouter aux favoris</span></a>
-                                        <a href="/cart/{{ $product->id }}/store" class="add-to-cart-btn add-to-compare"><i class="fa fa-shopping-cart"></i></a>
-                                        <a href="{{ route('product.show', $product) }}" class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Voir</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /product -->
-                            @endforeach
-                    </div>
-                    <!-- /store products -->
-
-                    <!-- store bottom filter -->
-                    <div class="store-filter clearfix">
-                        {{ $products->links() }}
-                    </div>
+                    @include('products.card', ['products' => $products])
                     <!-- /store bottom filter -->
                 </div>
                 <!-- /STORE -->
@@ -155,3 +116,7 @@
     </div>
     <!-- /NEWSLETTER -->
 @stop
+
+@section('scripts')
+<script src="/js/pages/shop.js"></script>
+@endsection

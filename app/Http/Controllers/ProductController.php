@@ -41,14 +41,13 @@ class ProductController extends Controller
     public function filter(Request $request)
     {
         if (empty($request->categories)) {
-            $product = Product::with('category')->get()->toArray();
-            return $product;
+            $products = Product::with('category')->paginate(6);
+            return ['products' => view('products.card', compact('products'))->__toString()];
         } else {
-            $product = Product::with('category')
+            $products = Product::with('category')
                 ->whereIn('category_id', array_values($request->categories))
-                ->get()
-                ->toArray();
-            return $product;
+                ->paginate(6);
+                return ['products' => view('products.card', compact('products'))->__toString()];
         }
 
     }
