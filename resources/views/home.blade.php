@@ -17,7 +17,7 @@
                         <div class="shop-body">
 
                             <h3>Collection<br>{{ $category->name }}</h3>
-                            <a href="{{ route('shop.index') }}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('products.index') }}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>

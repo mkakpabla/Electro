@@ -164,9 +164,9 @@
                     <!-- NAV -->
                     <ul class="main-nav nav navbar-nav">
                         <li class="{{ Route::is('home') ? ' active' : '' }}"><a href="{{ route('home') }}">Accueil</a></li>
-                        <li class="{{ Route::is('shop.index') && request()->category == null ? ' active' : '' }}"><a href="{{ route('shop.index') }}">Boutique</a></li>
+                        <li class="{{ Route::is('products.index')  ? ' active' : '' }}"><a href="{{ route('products.index') }}">Boutique</a></li>
                         @foreach($categories as $category)
-                            <li class="{{ Route::is('shop.index') && request()->category == $category->slug ? ' active' : '' }}"><a href="{{ route('shop.index', ['category' => $category->slug]) }}">{{ $category->name }}</a></li>
+                            <li class="{{ Route::is('products.category') && request()->category == $category->slug ? ' active' : '' }}"><a href="{{ route('products.category', ['category' => $category->slug]) }}">{{ $category->name }}</a></li>
                         @endforeach
                     </ul>
                     <!-- /NAV -->
@@ -286,7 +286,7 @@
 		<script src="/js/nouislider.min.js"></script>
 		<script src="/js/jquery.zoom.min.js"></script>
 		<script src="/js/main.js"></script>
-		<script src="/js/zenjs.js"></script>
+		<script src="/js/xhr.js"></script>
         @yield('scripts')
 
 	</body>

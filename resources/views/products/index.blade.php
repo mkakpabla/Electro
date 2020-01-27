@@ -9,7 +9,8 @@
             <!-- row -->
             <div class="row">
                 <!-- ASIDE -->
-                <div id="aside" class="col-md-3">
+                <form id="js-filter-form" action="{{ route('products.filter') }}" method="get">
+                    <div id="aside" class="col-md-3">
                     <!-- aside Widget -->
                     <div class="aside">
                         <h3 class="aside-title">Categories</h3>
@@ -20,6 +21,7 @@
                                     <label for="{{ $category->slug }}">
                                         <span></span>
                                         {{ $category->name }}
+                                        <small>({{ $category->products->count() }})</small>
                                     </label>
                                 </div>
                             @endforeach
@@ -33,20 +35,20 @@
                         <div class="price-filter">
                             <div id="price-slider"></div>
                             <div class="input-number price-min">
-                                <input id="price-min" type="number">
+                                <input id="price-min" type="number" name="min">
                                 <span class="qty-up">+</span>
                                 <span class="qty-down">-</span>
                             </div>
                             <span>-</span>
                             <div class="input-number price-max">
-                                <input id="price-max" type="number">
+                                <input id="price-max" type="number" name="max">
                                 <span class="qty-up">+</span>
                                 <span class="qty-down">-</span>
                             </div>
                         </div>
                     </div>
                     <!-- /aside Widget -->
-
+                </form>
                     <!-- aside Widget -->
                     <div class="aside">
                         <h3 class="aside-title">Meilleurs Ventes</h3>
@@ -69,7 +71,14 @@
                 <div id="store" class="col-md-9">
 
                     <!-- store products -->
-                    @include('products.card', ['products' => $products])
+                    <div id="products-store" class="row">
+                        @include('products.card', ['products' => $products])
+                    </div>
+                    <!-- /store products -->
+                    <!-- store bottom filter -->
+                    <div class="store-filter clearfix">
+                        {{ $products->links() }}
+                    </div>
                     <!-- /store bottom filter -->
                 </div>
                 <!-- /STORE -->

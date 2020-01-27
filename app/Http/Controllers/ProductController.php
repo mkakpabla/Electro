@@ -24,6 +24,15 @@ class ProductController extends Controller
         return view('products.index', compact('products', 'topSelling', 'categories'));
     }
 
+    public function category($category)
+    {
+        $products = Product::with('category')->whereHas('category', function ($query) use ($category){
+            $query->where('slug', $category);
+        })->paginate(8);
+        $category = Category::whereSlug($category)->first();
+        return view('products.category', compact('products', 'category', 'categories'));
+    }
+
     public function show(Product $product)
     {
         return view('products.show', compact('product'));
@@ -40,15 +49,14 @@ class ProductController extends Controller
 
     public function filter(Request $request)
     {
-        if (empty($request->categories)) {
-            $products = Product::with('category')->paginate(6);
+        $products = Product::with('category')
+            ->whereIn('category_id', array_values($request->categories))
+        ->paginate(6);
+        $categories = Category::all();
+        if($request->ajax()) {
             return ['products' => view('products.card', compact('products'))->__toString()];
-        } else {
-            $products = Product::with('category')
-                ->whereIn('category_id', array_values($request->categories))
-                ->paginate(6);
-                return ['products' => view('products.card', compact('products'))->__toString()];
         }
+        return view('products.index', compact('products', 'topSelling', 'categories'));
 
     }
 }

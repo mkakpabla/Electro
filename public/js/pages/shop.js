@@ -1,5 +1,45 @@
-let categories = []
-console.log("test")
+let form = document.querySelector('#js-filter-form')
+let productsStore = document.querySelector('#products-store')
+let categories = form.querySelectorAll('input[type=checkbox]')
+categories.forEach(category => {
+    category.addEventListener('change', (e) => {
+        e.preventDefault()
+        let data = new FormData(form)
+        let url = new URL(form.getAttribute('action'))
+        const params = new URLSearchParams()
+        data.forEach((value, key) => {
+            params.append(key, value)
+        })
+        let fullUrl = url.pathname + '?' + params.toString()
+        get(fullUrl).then(xhr => {
+            let response = JSON.parse(xhr.responseText)
+            productsStore.innerHTML = response.products
+            history.replaceState({}, '', fullUrl)
+        }).catch(xhr => {
+            console.error(xhr)
+        })
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*let categories = []
 items = document.querySelectorAll('input[name="categories[]"]')
 items.forEach(item => {
     item.addEventListener('change', function (e) {
@@ -9,7 +49,6 @@ items.forEach(item => {
         checkedItems.forEach(itemCheck => {
             categories.push(itemCheck.value);
         })
-
         $.ajax({
             url: '/shop/filter',
             type: 'GET',
@@ -18,12 +57,10 @@ items.forEach(item => {
             },
             success: function (data) {
                 $('#products-store').html(data.products)
-                document.querySelector('.store-filter').style.display = 'none'
             }
         })
     })
 })
-/*
 let singleItem = function (item) {
     return `
         <div id="products" class="col-md-4 col-xs-6">
