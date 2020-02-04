@@ -21,7 +21,6 @@ Route::get('/products', 'ProductController@index')->name('products.index');
 Route::get('/products/{category}', 'ProductController@category')->name('products.category');
 Route::get('/shop/products/{product}', 'ProductController@show')->name('product.show');
 Route::get('/search', 'ProductController@search')->name('product.search');
-Route::get('/shop/filter', 'ProductController@filter')->name('products.filter');
 
 Route::get('checkout', 'CheckoutController@index')->name('checkout.index')->middleware('auth');
 Route::post('checkout', 'CheckoutController@store')->name('checkout.store');

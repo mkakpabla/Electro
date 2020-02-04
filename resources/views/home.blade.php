@@ -65,7 +65,7 @@
                                     @foreach ($category->products->take(6) as $product)
                                         <div class="product">
                                             <div class="product-img">
-                                                <img src="{{ $product->cover }}" alt="" width="263" height="263">
+                                                <img class="product-cover" src="{{ $product->cover }}" alt="" width="263" height="263">
                                             <div class="product-label">
                                                 <!--<span class="sale">-30%</span>-->
                                                 <span class="new">Nouveau</span>
@@ -83,7 +83,7 @@
                                                     <i class="fa fa-star"></i>
                                                 </div>
                                                 <div>
-                                                    <button class="button fa fa-shopping-cart"> Ajouter au panier</button>
+                                                    <button class="button fa fa-shopping-cart js-add-to-cart"> Ajouter au panier</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -160,7 +160,7 @@
                                                 <i class="fa fa-star"></i>
                                             </div>
                                             <div>
-                                                <button class="button fa fa-shopping-cart"> Ajouter au panier</button>
+                                                <button class="button fa fa-shopping-cart js-add-to-cart"> Ajouter au panier</button>
                                             </div>
                                         </div>
                                     </div>

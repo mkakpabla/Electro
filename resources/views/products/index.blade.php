@@ -9,7 +9,7 @@
             <!-- row -->
             <div class="row">
                 <!-- ASIDE -->
-                <form id="js-filter-form" action="{{ route('products.filter') }}" method="get">
+                <form id="js-filter-form" action="{{ route('products.index') }}" method="get">
                     <div id="aside" class="col-md-3">
                     <!-- aside Widget -->
                     <div class="aside">

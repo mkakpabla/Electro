@@ -10,17 +10,19 @@ class ProductController extends Controller
 {
 
 
-    public function index()
+    public function index(Request $request)
     {
-        if (\request()->category) {
-            $products = Product::with('category')->whereHas('category', function ($query){
-                $query->where('slug', \request()->category);
-            })->paginate(10);
-            $categories = Category::all();
-        } else {
-            $products = Product::with('category')->paginate(6);
+        if($request->categories || $request->min || $request->max) {
+            $products = Product::with('category')
+                ->whereIn('category_id', array_values($request->categories))
+                ->paginate(6);
             $categories = Category::all();
         }
+        if($request->ajax()) {
+            return ['products' => view('products.card', compact('products'))->__toString()];
+        }
+        $products = Product::with('category')->paginate(6);
+        $categories = Category::all();
         return view('products.index', compact('products', 'topSelling', 'categories'));
     }
 
@@ -44,19 +46,5 @@ class ProductController extends Controller
             ->orWhere('slug', 'like', '%'.$request->q. '%')
             ->paginate(5);
         return view('search.index', compact('products'));
-    }
-
-
-    public function filter(Request $request)
-    {
-        $products = Product::with('category')
-            ->whereIn('category_id', array_values($request->categories))
-        ->paginate(6);
-        $categories = Category::all();
-        if($request->ajax()) {
-            return ['products' => view('products.card', compact('products'))->__toString()];
-        }
-        return view('products.index', compact('products', 'topSelling', 'categories'));
-
     }
 }
